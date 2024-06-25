@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sensors', function (Blueprint $table) {
+        Schema::create('results', function (Blueprint $table) {
             $table->id();
-            $table->string('temp_');
-            $table->string('hum_');
-            $table->string('force_');
-            $table->string('bend_');
-            $table->string('pressure_');
-            $table->string('pulse_rate');
+            $table->foreignId('user_id')->constrained();
+            $table->float('sweat_level');
+            $table->float('pain_level');
+            $table->float('fatigue_level');
+            $table->float('pulse_rate');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sensors');
+        Schema::dropIfExists('results');
     }
 };
